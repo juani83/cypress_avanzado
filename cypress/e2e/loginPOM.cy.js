@@ -25,3 +25,25 @@ describe('login con POM', function() {
         loginPage.validateSuccessLogin();
     });
 });
+
+
+describe('Login erroneo con configuracion', {
+    env: {
+        usuarioErroneo: 'error1',
+        passwordErroneo: 'error2'
+    }
+}, function() {
+    beforeEach(() => {
+        loginPage.visit();
+    });
+
+    it('Login erroneo', function() {
+        loginPage.validateLoginPage();
+
+        cy.log(Cypress.env());
+
+        loginPage.login(Cypress.env('usuarioErroneo'), Cypress.env('passwordErroneo'));
+
+        loginPage.validateErrorLogin();
+    });
+});
