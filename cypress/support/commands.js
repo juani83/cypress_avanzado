@@ -32,10 +32,12 @@ Cypress.Commands.add('login', (email, password) => {
     cy.visit('http://zero.webappsecurity.com/login.html');
 
     cy.get(userInput).type(email);
-    cy.get(passwordInput).type(password, {sensitive: true});
+    // cy.get(passwordInput).type(password, {sensitive: true});
+    cy.get(passwordInput).type(password);
     cy.get(loginButton).click();
 });
 
+/*
 Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
     if(options && options.sensitive) {
         options.log = false;
@@ -49,3 +51,4 @@ Cypress.Commands.overwrite('type', (originalFn, element, text, options) => {
         return originalFn(element, text, options);
     };
 })
+*/

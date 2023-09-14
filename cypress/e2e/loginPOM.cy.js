@@ -14,11 +14,13 @@ describe('login con POM', function() {
 
         loginPage.validateErrorLogin();
     });
-    
-    it('login exitoso', function() {
+
+    it('login exitoso con cy.env.json', function() {
         loginPage.validateLoginPage();
 
-        loginPage.login('username', 'password');
+        cy.log(Cypress.env());
+
+        loginPage.login(Cypress.env('credentials').user, Cypress.env('credentials').password);
 
         loginPage.validateSuccessLogin();
     });
